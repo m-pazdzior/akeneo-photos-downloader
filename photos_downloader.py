@@ -11,7 +11,7 @@ with open('photo_script_test.csv') as photos_csv:
         url = row[1]
         if url:
             data = requests.get(url, verify=False).content
-
-       
-
-        
+            file_name = f'{row[0]}.jpg'
+            f = open(file_name, 'wb')
+            f.write(data)
+            f.close()
