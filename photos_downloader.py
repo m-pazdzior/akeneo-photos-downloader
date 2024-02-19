@@ -3,6 +3,7 @@ import requests
 from PIL import Image 
 import urllib3
 import zipfile
+import os
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -22,8 +23,11 @@ with zipfile.ZipFile("photos.zip", mode="w") as photos_zip:
             else:
                 fields = row
 
-    with open('import_photos.csv', 'w', newline='') as photos_csv:
+    with open("import_photos.csv", 'w', newline='') as photos_csv:
         photos_csv_writer = csv.writer(photos_csv, delimiter=';')
         photos_csv_writer.writerow(fields)
         photos_csv_writer.writerows(rows)
+    
+    photos_zip.write('import_photos.csv')
+    os.remove('import_photos.csv')
 
