@@ -7,7 +7,10 @@ import os
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 with zipfile.ZipFile("photos.zip", mode="w") as photos_zip:
-    with open('photo_script_test.csv','r') as photos_csv:
+    csv_path = input('Podaj ścieżkę do pliku csv: ')
+    csv_path = csv_path.strip('\"')
+
+    with open(csv_path,'r') as photos_csv:
         photos_csv_reader = list(csv.reader(photos_csv, delimiter = ';'))
         rows = []
 
@@ -29,4 +32,3 @@ with zipfile.ZipFile("photos.zip", mode="w") as photos_zip:
     
     photos_zip.write('import_photos.csv')
     os.remove('import_photos.csv')
-
