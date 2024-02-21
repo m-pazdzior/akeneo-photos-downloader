@@ -28,5 +28,5 @@ with zipfile.ZipFile("photos.zip", mode="w") as photos_zip:
         photos_csv_writer.writerows(rows)
     
     photos_zip.write('import_photos.csv')
-    os.remove('import_photos.csv') 
+    os.remove('import_photos.csv')
 
