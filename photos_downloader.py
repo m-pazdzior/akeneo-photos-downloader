@@ -19,7 +19,8 @@ with zipfile.ZipFile("photos.zip", mode="w") as photos_zip:
                 url = row[1]
                 if url:
                     data = requests.get(url, verify=False).content
-                    file_name = f'{row[0]}.jpg'
+                    extension = url[-3:]
+                    file_name = f'{row[0]}.{extension}'
                     photos_zip.writestr(file_name, data)
                     rows.append([row[0], f'/{file_name}'])
             else:
